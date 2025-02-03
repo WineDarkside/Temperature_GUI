@@ -55,6 +55,20 @@ class Converter():
                                            font=("Arial", "12", "bold"), width=12)
         self.to_fahrenheit_button.grid(row=0, column=1, padx=5, pady=5)
 
+        self.to_help_button = Button(self.button_frame,
+                                     text="To help",
+                                     bg="#CC6600",
+                                     fg="#ffffff",
+                                     font=("Arial", "12", "bold"), width=12)
+        self.to_help_button.grid(row=1, column=0, padx=5, pady=5)
+
+        self.to_history = Button(self.button_frame,
+                                 text="History / Export",
+                                 bg="#004C99",
+                                 fg="#ffffff",
+                                 font=("Arial", "12", "bold"), width=12)
+        self.to_history.grid(row=1, column=1, padx=5, pady=5)
+
 
 # main routine
 if __name__ == "__main__":
