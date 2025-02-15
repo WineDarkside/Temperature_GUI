@@ -63,5 +63,57 @@ class HistoryExport:
         # Label list (label text | format | bg)
         history_labels_list = [
             ["History / Export", ("Arial", "16", "bold"), None],
-            [recent_intro_txt, ()]
+            [recent_intro_txt, ("Arial", "11"), None],
+            ["calculation list", ("Arial", "14"), green_back],
+            [export_instructions_text, ("Arial", "11"), None]
         ]
+        
+        history_label_ref = []
+        for count, item in enumerate(history_labels_list):
+            make_label = Label(self.history_box, text=item[0],
+                               bg=item[2],
+                               wraplength=300, justify="left", pady=10, padx=20)
+            make_label.grid(row=count)
+
+            history_label_ref.append(make_label)
+
+        # Retrieve export instructions label so that we can
+        # configue it ot show the filename if the user exports the file
+        self.export_filename_label = history_label_ref[3]
+
+        # make frame to hold buttons (two columns)
+        self.hist_button_frame = Frame(self.history_box)
+        self.hist_button_frame.grid(row=4)
+
+        button_ref_list = []
+
+        # button list (button text | bg color | command | row | column)
+        button_details_list = [
+            ["Export", "#004c99", "", 0, 0],
+            ["Close", "#666666", partial(self.close_history, partner), 0, 1],
+        ]
+
+        for btn in button_details_list:
+            self.make_button = Button(self.hist_button_frame,
+                                      font=("Arial", "12", "bold"),
+                                      text=btn[0], bg=btn[1],
+                                      fg="#FFFFFF", width=12,
+                                      command=btn[2])
+            self.make_button.grid(row=btn[3], column=btn[4], padx=10, pady=10)
+
+    def close_history(self, partner):
+
+        """
+        Closes history dialogue box (and enables history button)
+        """
+        # put history button back to normal...
+        partner.to_history_button.config(state=NORMAL)
+        self.history_box.destroy()
+
+
+# main history
+if __name__ == "__main__":
+    root = Tk()
+    root.title("Temperature Converter")
+    Converter()
+    root.mainloop()
