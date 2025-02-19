@@ -264,8 +264,6 @@ class HistoryExport:
         export_instructions_text = ("Please push <Export> to save your calculations in "
                                     "file. If the filename already exits, it wil be..")
 
-        calculations = ""
-
         # Label list (label text | format | bg)
         history_labels_list = [
             ["History / Export", ("Arial", "16", "bold"), None],
@@ -276,7 +274,7 @@ class HistoryExport:
 
         history_label_ref = []
         for count, item in enumerate(history_labels_list):
-            make_label = Label(self.history_box, text=item[0],
+            make_label = Label(self.history_box, text=item[0], font=item[1],
                                bg=item[2],
                                wraplength=300, justify="left", pady=10, padx=20)
             make_label.grid(row=count)
@@ -308,6 +306,9 @@ class HistoryExport:
             self.make_button.grid(row=btn[3], column=btn[4], padx=10, pady=10)
 
     def export_data(self, calculations):
+
+        print("calculations: ", calculations)
+
         # Get current date for heading and filename
         today = date.today()
 
